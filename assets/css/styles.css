@@ -8,3 +8,8 @@
 @media(min-width:681px) and (max-width:1023px){.hero h1{font-size:58px}.game-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.category-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(min-width:1500px){.wrap{--max:1320px}.game-grid{grid-template-columns:repeat(5,minmax(0,1fr))}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+
+/* Full-size licensed HTML5 games */
+.mini-game-embedded{width:100%;max-width:none;min-height:560px;padding:0;border:0;background:transparent;box-shadow:none;overflow:hidden}
+.mini-game-embedded iframe{display:block;width:100%;height:min(78vh,700px);min-height:560px;border:0;border-radius:14px;background:#020617}
+@media(max-width:600px){.mini-game-embedded{min-height:520px}.mini-game-embedded iframe{height:72vh;min-height:520px;border-radius:10px}.player-topbar{align-items:flex-start;flex-wrap:wrap}.player-controls{flex-wrap:wrap}}
