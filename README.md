@@ -27,6 +27,10 @@ A mobile-first, **static frontend-only** browser gaming website built with HTML,
 
 The catalogue also contains discovery concepts marked as coming soon. A game should only be marked playable when its actual game build is present and its source/usage rights have been checked.
 
+## Game source and licensing audit
+
+See [GAME_SOURCE_AUDIT.md](GAME_SOURCE_AUDIT.md) for screened external game candidates, license constraints and the acceptance checklist used before importing a game.
+
 ## Run locally
 
 Open `index.html` in a modern browser, or serve the repository root with any static web server. Standalone games can also be opened directly from their `games/<game-id>/index.html` paths.
