@@ -1,0 +1,38 @@
+window.GAMES_CATALOG = [
+{id:"reaction-tap",name:"Reaction Tap",category:"Arcade",emoji:"⚡",colors:["#f9a63b","#ed5c78"],tag:"QUICK PLAY",description:"How fast are your reflexes? Wait for green, then tap as quickly as you can.",controls:"Tap or click when the screen turns green.",playable:true,added:1},
+{id:"memory-match",name:"Memory Match",category:"Puzzle",emoji:"🧠",colors:["#4f86d9","#7658c9"],tag:"BRAIN GAME",description:"Flip cards, find matching pairs and train your memory.",controls:"Tap two cards to reveal them. Match every pair.",playable:true,added:2},
+{id:"tic-tac-toe",name:"Tic Tac Toe",category:"Board",emoji:"⭕",colors:["#32a6a5","#246a87"],tag:"CLASSIC",description:"A timeless two-player strategy game. Get three marks in a row to win.",controls:"Choose a square. Take turns with a friend on the same device.",playable:true,added:3},
+{id:"2048",name:"2048",category:"Puzzle",emoji:"🔢",colors:["#e6a84d","#ca704b"],tag:"PUZZLE",description:"Slide numbered tiles, combine matching numbers and reach 2048.",controls:"Use arrow keys or swipe to move tiles. Matching numbers merge.",playable:true,added:4},
+{id:"neon-racer",name:"Neon Racer",category:"Racing",emoji:"🏎️",colors:["#6745c8","#1e9cba"],tag:"TRENDING",description:"A fast-paced arcade racing concept with neon-inspired visuals.",controls:"Arrow keys or WASD to steer.",playable:false,added:5},
+{id:"space-pilot",name:"Space Pilot",category:"Arcade",emoji:"🚀",colors:["#354b9b","#8c55bd"],tag:"NEW",description:"Navigate a colorful space field and explore the stars.",controls:"Keyboard or touch controls, depending on the game build.",playable:false,added:6},
+{id:"goal-rush",name:"Goal Rush",category:"Sports",emoji:"⚽",colors:["#278b69","#8dbd52"],tag:"SPORTS",description:"A quick football challenge for fans of the beautiful game.",controls:"Game controls will be shown before play.",playable:false,added:7},
+{id:"jewel-pop",name:"Jewel Pop",category:"Puzzle",emoji:"💎",colors:["#d84d91","#7545b8"],tag:"PUZZLE",description:"A colorful match-and-clear puzzle concept.",controls:"Swap adjacent pieces to make matches.",playable:false,added:8},
+{id:"pocket-chess",name:"Pocket Chess",category:"Board",emoji:"♟️",colors:["#4c526d","#8c9bb9"],tag:"STRATEGY",description:"A compact chess experience for thoughtful players.",controls:"Select a piece, then select a legal destination.",playable:false,added:9},
+{id:"drift-club",name:"Drift Club",category:"Racing",emoji:"🚘",colors:["#d85e43","#e8a13c"],tag:"RACING",description:"Slide through corners in this drift-racing concept.",controls:"Steer and manage acceleration.",playable:false,added:10},
+{id:"basket-bounce",name:"Basket Bounce",category:"Sports",emoji:"🏀",colors:["#e97838","#b83d55"],tag:"SPORTS",description:"Aim, shoot and chase a new high score.",controls:"Aim and release to shoot.",playable:false,added:11},
+{id:"tiny-farm",name:"Tiny Farm",category:"Simulation",emoji:"🌱",colors:["#4e9b66","#b4bd58"],tag:"COZY",description:"Grow a little patch of land and build a cozy farm.",controls:"Tap crops and tools to interact.",playable:false,added:12},
+{id:"tower-guard",name:"Tower Guard",category:"Strategy",emoji:"🏰",colors:["#5964a9","#9c6db7"],tag:"STRATEGY",description:"Plan your defenses and protect the path.",controls:"Choose towers and place them strategically.",playable:false,added:13},
+{id:"word-wizard",name:"Word Wizard",category:"Word",emoji:"🔤",colors:["#338b9c","#5d65c5"],tag:"BRAIN GAME",description:"Find words, connect letters and keep your vocabulary sharp.",controls:"Select letters to form words.",playable:false,added:14},
+{id:"puzzle-pets",name:"Puzzle Pets",category:"Puzzle",emoji:"🐱",colors:["#d77b9c","#8b66c2"],tag:"COZY",description:"A friendly puzzle world with adorable characters.",controls:"Tap and match the pieces.",playable:false,added:15},
+{id:"sky-glider",name:"Sky Glider",category:"Arcade",emoji:"🪂",colors:["#3d9db6","#5268c2"],tag:"ARCADE",description:"Glide through the sky and avoid obstacles.",controls:"Use simple directional controls.",playable:false,added:16},
+{id:"pool-party",name:"Pool Party",category:"Sports",emoji:"🎱",colors:["#287f75","#315c9c"],tag:"SPORTS",description:"A cue-sports inspired game concept.",controls:"Aim, set power and shoot.",playable:false,added:17},
+{id:"monster-mayhem",name:"Monster Mayhem",category:"Action",emoji:"👾",colors:["#6c4ab4","#d54e75"],tag:"ACTION",description:"A playful arcade action adventure.",controls:"Move, dodge and collect.",playable:false,added:18},
+{id:"sushi-stack",name:"Sushi Stack",category:"Arcade",emoji:"🍣",colors:["#d66e62","#e3a84f"],tag:"QUICK PLAY",description:"Stack tasty treats as high as you can.",controls:"Tap to drop each item.",playable:false,added:19},
+{id:"island-builder",name:"Island Builder",category:"Simulation",emoji:"🏝️",colors:["#32a6a2","#d1a85c"],tag:"SIMULATION",description:"Build a peaceful island retreat.",controls:"Choose structures and place them on the island.",playable:false,added:20},
+{id:"word-sprint",name:"Word Sprint",category:"Word",emoji:"⌨️",colors:["#4c78b9","#35a5a0"],tag:"BRAIN GAME",description:"Type words quickly and improve your speed.",controls:"Type the displayed words before time runs out.",playable:false,added:21},
+{id:"ludo-lounge",name:"Ludo Lounge",category:"Board",emoji:"🎲",colors:["#3b9d8b","#7356b9"],tag:"CLASSIC",description:"A colorful board-game inspired experience.",controls:"Roll the dice and move your tokens.",playable:false,added:22},
+{id:"deep-dive",name:"Deep Dive",category:"Adventure",emoji:"🐠",colors:["#167e9b","#4b5bb0"],tag:"ADVENTURE",description:"Explore an underwater world and discover hidden treasures.",controls:"Explore with directional controls.",playable:false,added:23},
+{id:"fruit-frenzy",name:"Fruit Frenzy",category:"Arcade",emoji:"🍉",colors:["#3c9b69","#d95d66"],tag:"ARCADE",description:"A bright and breezy fruit-themed arcade challenge.",controls:"Tap at the right moment.",playable:false,added:24}
+];
+window.GAME_CATEGORIES = [
+{name:"Puzzle",icon:"🧩",description:"Think, match and solve",count:"Brain teasers",color:"linear-gradient(135deg,#7857c9,#bd68b4)"},
+{name:"Arcade",icon:"👾",description:"Quick games, big energy",count:"Fast & fun",color:"linear-gradient(135deg,#287da8,#4c57bd)"},
+{name:"Racing",icon:"🏎️",description:"Engines on, worries off",count:"Speed & stunts",color:"linear-gradient(135deg,#d85d43,#bd8a3d)"},
+{name:"Sports",icon:"🏆",description:"Play for the win",count:"All-star action",color:"linear-gradient(135deg,#238d70,#76a94f)"},
+{name:"Board",icon:"♟️",description:"Classic games, clever moves",count:"Think ahead",color:"linear-gradient(135deg,#4d648e,#8772b7)"},
+{name:"Action",icon:"⚔️",description:"Jump into the action",count:"Adventure awaits",color:"linear-gradient(135deg,#b14b6e,#7045ae)"},
+{name:"Simulation",icon:"🌱",description:"Build your own little world",count:"Create & manage",color:"linear-gradient(135deg,#388b70,#b0a24c)"},
+{name:"Strategy",icon:"🏰",description:"Plan your next move",count:"Tactics & skill",color:"linear-gradient(135deg,#4d5b9f,#8a5fbd)"},
+{name:"Word",icon:"🔤",description:"Play with language",count:"Words & trivia",color:"linear-gradient(135deg,#287f91,#5265bb)"},
+{name:"Adventure",icon:"🗺️",description:"Discover new places",count:"Explore more",color:"linear-gradient(135deg,#277c89,#4b65b2)"}
+];
