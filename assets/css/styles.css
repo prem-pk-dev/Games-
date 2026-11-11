@@ -26,3 +26,15 @@
 @media(min-width:1200px){.game-grid{grid-template-columns:repeat(5,minmax(0,1fr));gap:20px}.game-thumb{aspect-ratio:1.35}}
 @media(min-width:1650px){.wrap{--max:1400px}.game-grid{grid-template-columns:repeat(6,minmax(0,1fr))}}
 @media(max-width:680px){.game-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.game-thumb{aspect-ratio:1.24}.game-art-image{object-fit:cover}}
+
+/* Reliable embedded game launch and visible loading/retry state */
+.mini-game-embedded{position:relative;width:100%;min-height:560px;padding:0!important;overflow:hidden;background:#080a14!important}
+.mini-game-embedded iframe{position:relative;z-index:1;display:block;width:100%;height:min(78vh,760px);min-height:560px;border:0;border-radius:14px;background:#080a14}
+.game-frame-loading{position:absolute;z-index:2;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:24px;text-align:center;background:radial-gradient(ellipse at center,#1b1b35,#090a12);color:#fff;pointer-events:none}
+.game-frame-loading small{color:#aeb5d3;font-size:12px}
+.game-frame-spinner{width:32px;height:32px;border:3px solid #ffffff2b;border-top-color:#9c7bff;border-radius:50%;animation:game-spin .8s linear infinite}
+.game-frame-loading.is-loaded{opacity:0;transition:opacity .35s ease}
+.game-frame-loading.has-error{pointer-events:auto}
+.game-frame-loading button{border:0;border-radius:10px;padding:10px 16px;background:#8966ec;color:white;font-weight:700;cursor:pointer}
+@keyframes game-spin{to{transform:rotate(360deg)}}
+@media(max-width:600px){.mini-game-embedded{min-height:520px}.mini-game-embedded iframe{height:72vh;min-height:520px;border-radius:10px}}
