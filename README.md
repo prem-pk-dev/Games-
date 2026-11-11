@@ -21,7 +21,7 @@ A mobile-first, **static frontend-only** browser gaming website built with HTML,
 
 **Compact games:** Reaction Tap, Memory Match, Tic Tac Toe, 2048, Neon Racer, Space Pilot, Goal Rush, Snake, Minesweeper and Breakout.
 
-**Standalone games:** Sports Heads Football, Ludo Classic, Line Trap, Sky Dash: Platform Quest and Bubble Shooter.
+**Standalone games:** Sports Heads Football, Ludo Classic, Line Trap, Sky Dash: Platform Quest Bubble Shooter, Stack Tower 3D and Crossy Road.
 
 The catalogue also contains discovery concepts marked as coming soon. A game should only be marked playable when its actual game build is present and its source/usage rights have been checked.
 
