@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://prem-pk-dev.github.io/Games-/</loc></url>
-  <url><loc>https://prem-pk-dev.github.io/Games-/games.html</loc></url>
-  <url><loc>https://prem-pk-dev.github.io/Games-/categories.html</loc></url>
-  <url><loc>https://prem-pk-dev.github.io/Games-/favorites.html</loc></url>
-  <url><loc>https://prem-pk-dev.github.io/Games-/recently-played.html</loc></url>
-  <url><loc>https://prem-pk-dev.github.io/Games-/about.html</loc></url>
-  <url><loc>https://prem-pk-dev.github.io/Games-/contact.html</loc></url>
+  <url><loc>https://games-naam.pages.dev/</loc></url>
+  <url><loc>https://games-naam.pages.dev/games.html</loc></url>
+  <url><loc>https://games-naam.pages.dev/categories.html</loc></url>
+  <url><loc>https://games-naam.pages.dev/favorites.html</loc></url>
+  <url><loc>https://games-naam.pages.dev/recently-played.html</loc></url>
+  <url><loc>https://games-naam.pages.dev/about.html</loc></url>
+  <url><loc>https://games-naam.pages.dev/contact.html</loc></url>
+  <url><loc>https://games-naam.pages.dev/game-submission.html</loc></url>
+  <url><loc>https://games-naam.pages.dev/privacy.html</loc></url>
+  <url><loc>https://games-naam.pages.dev/terms.html</loc></url>
 </urlset>
