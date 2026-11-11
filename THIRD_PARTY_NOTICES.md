@@ -1,9 +1,9 @@
 # Third-party game notices
 
 The following standalone HTML5 games are adapted from https://github.com/sausi-7/games:
-- Sports Heads Football — `games/sports/football/index.html`
-- Ludo — `games/board/ludo/index.html`
-- Line Trap — `games/puzzle/line-trap/index.html`
+- Sports Heads Football — `games/football/index.html`
+- Ludo — `games/ludo/index.html`
+- Line Trap — `games/line-trap/index.html`
 
 Upstream license: MIT
 Copyright (c) 2026 Saurabh Singh

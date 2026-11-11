@@ -19,9 +19,11 @@ A mobile-first, **static frontend-only** browser gaming website built with HTML,
 
 ## Playable games
 
-**Compact games:** Reaction Tap, Memory Match, Tic Tac Toe, 2048, Neon Racer, Space Pilot, Goal Rush, Snake, Minesweeper and Breakout.
+**Compact games (10):** Reaction Tap, Memory Match, Tic Tac Toe, 2048, Neon Racer, Space Pilot, Goal Rush, Snake, Minesweeper and Breakout. These are lightweight, self-contained mini-games implemented in `assets/js/game-player.js`.
 
-**Standalone games:** Sports Heads Football, Ludo Classic, Line Trap, Sky Dash: Platform Quest Bubble Shooter, Stack Tower 3D, Crossy Road, Flappy Flight Space Invaders and Blockfall Tetris.
+**Standalone browser games (10):** Sports Heads Football, Ludo Classic, Line Trap, Sky Dash: Platform Quest, Bubble Shooter, Stack Tower 3D, Crossy Road, Flappy Flight, Space Invaders and Blockfall Tetris. Each has its own page under `games/<game-id>/index.html` and runs locally on this static site.
+
+**Important distinction:** the seven games tagged `ORIGINAL GAME` are original lightweight canvas implementations, not licensed commercial/Poki game builds or photorealistic 3D productions. The three adapted games are third-party MIT-licensed projects with notices in `THIRD_PARTY_NOTICES.md`. Catalogue artwork is separate from in-game graphics; a card image is not evidence of a game build.
 
 The catalogue also contains discovery concepts marked as coming soon. A game should only be marked playable when its actual game build is present and its source/usage rights have been checked.
 
