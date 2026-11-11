@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#10111b">
+<title>Sky Dash: Platform Quest — Games</title>
+<style>
+:root{color-scheme:dark;font-family:system-ui,Segoe UI,sans-serif}*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#080d1c;color:#f7f8ff;touch-action:none}body{display:grid;place-items:center}.wrap{width:min(100vw,1100px);height:100dvh;max-height:720px;display:flex;flex-direction:column;background:linear-gradient(180deg,#101a36,#0b1021);position:relative}.hud{height:54px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;gap:10px;font-size:13px;font-weight:800}.hud span{color:#91e7e2}.gamebox{position:relative;flex:1;min-height:0}canvas{width:100%;height:100%;display:block}.overlay{position:absolute;inset:0;display:grid;place-items:center;background:#080d1cbb;padding:20px}.panel{width:min(92%,410px);padding:26px;border:1px solid #ffffff25;border-radius:20px;text-align:center;background:linear-gradient(145deg,#202c50,#141a30);box-shadow:0 20px 80px #0009}.panel h1{margin:0 0 10px;font-size:clamp(24px,5vw,34px)}.panel p{color:#c2cbe3;line-height:1.55;font-size:14px}.panel button,.hud button{border:0;border-radius:12px;padding:12px 20px;background:linear-gradient(120deg,#8d70f5,#42c8ce);color:#08111f;font-weight:900;cursor:pointer}.controls{position:absolute;inset:auto 0 16px;display:flex;justify-content:space-between;align-items:end;padding:0 18px;pointer-events:none}.pad{display:flex;gap:10px}.controls button{pointer-events:auto;width:58px;height:58px;border:1px solid #ffffff50;border-radius:18px;background:#10182dcc;color:white;font-size:24px;font-weight:900;touch-action:none}.controls button:active{background:#6855c7}.hidden{display:none!important}.hint{font-size:11px;color:#aebbd8}@media(min-width:800px){.wrap{border:1px solid #ffffff20;border-radius:18px;overflow:hidden;height:min(92dvh,720px)}.controls{opacity:.8}.controls button{width:48px;height:48px}}
+</style>
+</head>
+<body>
+<main class="wrap">
+ <header class="hud"><div>🧗 SKY DASH <span>PLATFORM QUEST</span></div><div id="level">LEVEL 1 / 3</div><div>💎 <b id="gems">0</b>　❤️ <b id="lives">3</b></div><button id="pause">Ⅱ</button></header>
+ <section class="gamebox"><canvas id="game" width="960" height="560" aria-label="Sky Dash platform game"></canvas>
+  <div class="overlay" id="overlay"><div class="panel"><h1>🧗 Sky Dash</h1><p>Jump between floating platforms, collect every gem you can and reach the glowing portal. Watch out for spikes and roaming bots!</p><p><b>Keyboard:</b> A / D or ← / → to move · W / ↑ / Space to jump</p><button id="start">START ADVENTURE</button></div></div>
+  <div class="controls"><div class="pad"><button data-key="left">◀</button><button data-key="right">▶</button></div><div class="pad"><button data-key="jump">⬆</button></div></div>
+ </section>
+</main>
+<script>
+(()=>{'use strict';
+const canvas=document.getElementById('game'),ctx=canvas.getContext('2d'),overlay=document.getElementById('overlay'),gemsEl=document.getElementById('gems'),livesEl=document.getElementById('lives'),levelEl=document.getElementById('level');
+const W=960,H=560,keys={left:false,right:false,jump:false};let level=0,score=0,lives=3,running=false,paused=false,raf=0,last=0,camera=0,player,platforms,coins,spikes,enemies,goal,particles=[];
+const maps=[
+{width:1900,plats:[[0,490,420,70],[500,430,170,22],[740,365,160,22],[980,430,200,22],[1260,350,170,22],[1510,430,390,70]],coins:[[170,445],[565,385],[800,320],[1050,385],[1320,305],[1640,385]],spikes:[[350,470,58,20],[1090,410,54,20],[1740,410,55,20]],enemies:[[850,335,1],[1580,400,-1]],goal:[1810,390]},
+{width:2200,plats:[[0,490,260,70],[340,420,150,22],[570,340,150,22],[820,420,170,22],[1080,330,160,22],[1340,410,170,22],[1600,320,180,22],[1880,430,320,70]],coins:[[390,375],[620,295],[880,375],[1135,285],[1400,365],[1670,275],[1990,385]],spikes:[[190,470,48,20],[710,320,50,20],[1210,310,55,20],[1770,410,60,20]],enemies:[[900,390,1],[1460,380,-1],[1930,400,1]],goal:[2100,390]},
+{width:2450,plats:[[0,490,300,70],[390,420,140,22],[620,340,150,22],[860,270,150,22],[1100,360,170,22],[1380,440,150,22],[1610,350,150,22],[1850,280,170,22],[2100,420,350,70]],coins:[[440,375],[670,295],[910,225],[1150,315],[1430,395],[1660,305],[1900,235],[2240,375]],spikes:[[240,470,48,20],[750,320,48,20],[1260,340,55,20],[1540,420,50,20],[2020,400,60,20]],enemies:[[680,310,1],[1150,330,-1],[1660,320,1],[2180,390,-1]],goal:[2360,380]}
+];
+function loadLevel(){const m=maps[level];camera=0;player={x:45,y:420,vx:0,vy:0,w:34,h:48,on:false,inv:0};platforms=m.plats.map(a=>({x:a[0],y:a[1],w:a[2],h:a[3]}));coins=m.coins.map(a=>({x:a[0],y:a[1],got:false,phase:Math.random()*6}));spikes=m.spikes.map(a=>({x:a[0],y:a[1],w:a[2],h:a[3]}));enemies=m.enemies.map(a=>({x:a[0],y:a[1],dir:a[2],base:a[0],dead:false}));goal={x:m.goal[0],y:m.goal[1]};particles=[];levelEl.textContent='LEVEL '+(level+1)+' / 3';sync()}
+function sync(){gemsEl.textContent=score;livesEl.textContent=lives}
+function start(){cancelAnimationFrame(raf);level=0;score=0;lives=3;running=true;paused=false;loadLevel();overlay.classList.add('hidden');last=0;raf=requestAnimationFrame(loop)}
+function finish(title,msg,button){running=false;cancelAnimationFrame(raf);overlay.innerHTML='<div class="panel"><h1>'+title+'</h1><p>'+msg+'</p><button id="again">'+button+'</button></div>';overlay.classList.remove('hidden');document.getElementById('again').onclick=start}
+function loseLife(){if(player.inv>0)return;lives--;sync();if(lives<=0){finish('GAME OVER','You collected '+score+' gems. Give it another run!','TRY AGAIN');return}player.x=Math.max(25,player.x-100);player.y=300;player.vx=0;player.vy=0;player.inv=1.6}
+function nextLevel(){if(level<2){level++;loadLevel()}else finish('🏆 QUEST COMPLETE','You cleared all three levels and collected '+score+' gems. Excellent run!','PLAY AGAIN')}
+function collide(a,b){return a.x<b.x+b.w&&a.x+a.w>b.x&&a.y<b.y+b.h&&a.y+a.h>b.y}
+function burst(x,y,color){for(let i=0;i<9;i++)particles.push({x,y,vx:(Math.random()-.5)*220,vy:(Math.random()-.7)*220,t:.55,color})}
+function update(dt){const m=maps[level],speed=290;player.vx=(keys.right?speed:0)-(keys.left?speed:0);if(keys.jump&&player.on){player.vy=-690;player.on=false}player.vy=Math.min(900,player.vy+1750*dt);player.x+=player.vx*dt;player.x=Math.max(0,Math.min(m.width-player.w,player.x));const oldY=player.y;player.y+=player.vy*dt;player.on=false;for(const p of platforms){if(player.vy>=0&&oldY+player.h<=p.y+8&&player.y+player.h>=p.y&&player.x+player.w>p.x&&player.x<p.x+p.w){player.y=p.y-player.h;player.vy=0;player.on=true}}if(player.y>H+100){loseLife();return}if(player.inv>0)player.inv-=dt;
+for(const c of coins){c.phase+=dt*4;if(!c.got&&Math.hypot(player.x+player.w/2-c.x,player.y+player.h/2-c.y)<29){c.got=true;score++;sync();burst(c.x,c.y,'#ffe58a')}}
+for(const s of spikes)if(collide(player,{x:s.x+5,y:s.y+7,w:s.w-10,h:s.h-5})){loseLife();break}
+for(const e of enemies){if(e.dead)continue;e.x+=e.dir*95*dt;if(Math.abs(e.x-e.base)>92)e.dir*=-1;const box={x:e.x,y:e.y,w:34,h:35};if(collide(player,box)){if(player.vy>120&&player.y+player.h-box.y<24){e.dead=true;player.vy=-390;burst(e.x+17,e.y+17,'#ff8e9c')}else loseLife()}}
+if(collide(player,{x:goal.x,y:goal.y,w:38,h:85}))nextLevel();
+camera=Math.max(0,Math.min(m.width-W,player.x-W*.38));
+particles=particles.filter(p=>p.t>0);particles.forEach(p=>{p.t-=dt;p.x+=p.vx*dt;p.y+=p.vy*dt;p.vy+=300*dt})}
+function draw(){const sky=ctx.createLinearGradient(0,0,0,H);sky.addColorStop(0,'#17264c');sky.addColorStop(1,'#294b71');ctx.fillStyle=sky;ctx.fillRect(0,0,W,H);ctx.save();ctx.translate(-camera,0);
+for(let i=0;i<18;i++){let x=(i*173-camera*.22)%(maps[level].width+200);ctx.fillStyle='#ffffff12';ctx.beginPath();ctx.arc(x,75+(i%4)*36,18+(i%3)*10,0,Math.PI*2);ctx.fill()}
+platforms.forEach(p=>{ctx.fillStyle='#253c58';ctx.fillRect(p.x,p.y,p.w,p.h);ctx.fillStyle='#53d6b5';ctx.fillRect(p.x,p.y,p.w,7);for(let x=p.x+12;x<p.x+p.w-8;x+=28){ctx.fillStyle='#ffffff12';ctx.fillRect(x,p.y+15,12,3)}});
+spikes.forEach(s=>{ctx.fillStyle='#ff6e86';for(let x=s.x;x<s.x+s.w;x+=15){ctx.beginPath();ctx.moveTo(x,s.y+s.h);ctx.lineTo(x+7,s.y);ctx.lineTo(x+15,s.y+s.h);ctx.fill()}});
+coins.forEach(c=>{if(c.got)return;ctx.save();ctx.translate(c.x,c.y);ctx.scale(.8+Math.sin(c.phase)*.18,1);ctx.fillStyle='#ffdb69';ctx.beginPath();ctx.arc(0,0,10,0,Math.PI*2);ctx.fill();ctx.strokeStyle='#fff1b1';ctx.lineWidth=3;ctx.stroke();ctx.restore()});
+enemies.forEach(e=>{if(e.dead)return;ctx.fillStyle='#ff718d';ctx.beginPath();ctx.roundRect(e.x,e.y,34,35,9);ctx.fill();ctx.fillStyle='#1c2440';ctx.fillRect(e.x+7,e.y+10,5,6);ctx.fillRect(e.x+22,e.y+10,5,6)});
+ctx.fillStyle='#b6a1ff';ctx.shadowColor='#a58bff';ctx.shadowBlur=24;ctx.beginPath();ctx.roundRect(goal.x,goal.y,38,85,17);ctx.fill();ctx.shadowBlur=0;ctx.fillStyle='#f4efff';ctx.fillRect(goal.x+12,goal.y+14,14,56);
+if(player.inv<=0||Math.floor(player.inv*12)%2===0){ctx.fillStyle='#72e6d4';ctx.beginPath();ctx.roundRect(player.x,player.y,player.w,player.h,10);ctx.fill();ctx.fillStyle='#14233b';ctx.fillRect(player.x+7,player.y+12,6,7);ctx.fillRect(player.x+22,player.y+12,6,7);ctx.fillStyle='#f3b18b';ctx.fillRect(player.x+9,player.y+32,7,15);ctx.fillRect(player.x+21,player.y+32,7,15)}
+particles.forEach(p=>{ctx.globalAlpha=Math.max(0,p.t/.55);ctx.fillStyle=p.color;ctx.fillRect(p.x,p.y,5,5);ctx.globalAlpha=1});ctx.restore();
+if(paused){ctx.fillStyle='#080d1ccc';ctx.fillRect(0,0,W,H);ctx.fillStyle='white';ctx.font='bold 38px system-ui';ctx.textAlign='center';ctx.fillText('PAUSED',W/2,H/2)}}
+function loop(t){if(!running)return;const dt=Math.min(.032,(t-(last||t))/1000);last=t;if(!paused)update(dt);draw();raf=requestAnimationFrame(loop)}
+function key(e,on){const k=e.key.toLowerCase();if(['arrowleft','arrowright','arrowup',' ','a','d','w'].includes(k))e.preventDefault();if(k==='arrowleft'||k==='a')keys.left=on;if(k==='arrowright'||k==='d')keys.right=on;if(k==='arrowup'||k==='w'||k===' ')keys.jump=on;if(k==='escape'||k==='p'){if(on){paused=!paused;document.getElementById('pause').textContent=paused?'▶':'Ⅱ'}}}
+window.addEventListener('keydown',e=>key(e,true));window.addEventListener('keyup',e=>key(e,false));window.addEventListener('blur',()=>{keys.left=keys.right=keys.jump=false});
+document.querySelectorAll('[data-key]').forEach(b=>{const k=b.dataset.key,down=e=>{e.preventDefault();keys[k]=true},up=e=>{e.preventDefault();keys[k]=false};b.addEventListener('pointerdown',down);['pointerup','pointercancel','pointerleave'].forEach(ev=>b.addEventListener(ev,up))});
+document.getElementById('start').onclick=start;document.getElementById('pause').onclick=()=>{if(!running)return;paused=!paused;document.getElementById('pause').textContent=paused?'▶':'Ⅱ'};
+loadLevel();draw();
+})();
+</script>
+</body></html>
