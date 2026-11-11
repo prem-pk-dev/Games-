@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://prem-pk-dev.github.io/Games-/sitemap.xml
