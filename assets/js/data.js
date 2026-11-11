@@ -23,6 +23,7 @@ window.GAMES_CATALOG = [
 {id:"ludo-lounge",name:"Ludo Lounge",category:"Board",emoji:"🎲",colors:["#3b9d8b","#7356b9"],tag:"CLASSIC",description:"A colorful board-game inspired experience.",controls:"Roll the dice and move your tokens.",playable:false,added:22},
 {id:"deep-dive",name:"Deep Dive",category:"Adventure",emoji:"🐠",colors:["#167e9b","#4b5bb0"],tag:"ADVENTURE",description:"Explore an underwater world and discover hidden treasures.",controls:"Explore with directional controls.",playable:false,added:23},
 {id:"fruit-frenzy",name:"Fruit Frenzy",category:"Arcade",emoji:"🍉",colors:["#3c9b69","#d95d66"],tag:"ARCADE",description:"A bright and breezy fruit-themed arcade challenge.",controls:"Tap at the right moment.",playable:false,added:24}
+{id:"snake",name:"Snake",category:"Arcade",emoji:"🐍",colors:["#2d9b72","#b7c94d"],tag:"CLASSIC",description:"Guide the snake, collect food and grow longer without hitting the walls or yourself.",controls:"Use arrow keys, WASD or the on-screen direction buttons. Swipe also works on touch screens.",playable:true,added:25}
 ];
 window.GAME_CATEGORIES = [
 {name:"Puzzle",icon:"🧩",description:"Think, match and solve",count:"Brain teasers",color:"linear-gradient(135deg,#7857c9,#bd68b4)"},
