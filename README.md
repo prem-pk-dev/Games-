@@ -1,46 +1,42 @@
 # Games — Global Browser Gaming Platform
 
-A mobile-first static browser gaming website built with HTML, CSS and vanilla JavaScript.
+A mobile-first, **static frontend-only** browser gaming website built with HTML, CSS and vanilla JavaScript. It runs on GitHub Pages or Cloudflare Pages without a backend, database, paid API or build step.
 
-## Current structure
+## Website structure
 
-- \`index.html\` — homepage and discovery sections
-- \`games.html\` — searchable and filterable catalogue
-- \`categories.html\` — category directory
-- \`game.html\` — game detail and player shell
-- \`favorites.html\` — locally saved favorites
-- \`recently-played.html\` — local play history
-- \`about.html\`, \`contact.html\`, \`game-submission.html\`
-- \`privacy.html\`, \`terms.html\`
-- \`assets/css/styles.css\` — responsive design system
-- \`assets/js/data.js\` — game and category catalogue
-- \`assets/js/app.js\` — navigation, search, filters and local state
-- \`assets/js/game-player.js\` — original mini-game implementations
+- `index.html` — homepage and discovery sections
+- `games.html` — searchable, sortable and filterable catalogue
+- `categories.html` — category directory
+- `game.html` — game detail and player shell
+- `favorites.html`, `recently-played.html` — browser-local collections
+- `about.html`, `contact.html`, `game-submission.html`
+- `privacy.html`, `terms.html`, `404.html`
+- `assets/css/styles.css` — responsive design system
+- `assets/js/data.js` — game and category catalogue
+- `assets/js/app.js` — navigation, search, filters and local state
+- `assets/js/game-player.js` — compact self-contained games
+- `games/*/index.html` — standalone full-size games
 
-## Working mini-games in this starter build
+## Playable games
 
-- Reaction Tap
-- Memory Match
-- Tic Tac Toe (local two-player)
-- 2048
+**Compact games:** Reaction Tap, Memory Match, Tic Tac Toe, 2048, Neon Racer, Space Pilot, Goal Rush, Snake, Minesweeper and Breakout.
 
-Other catalogue entries are discovery placeholders and are clearly marked as not playable yet. They must not be represented as playable until the game build and distribution rights are verified.
+**Standalone games:** Sports Heads Football, Ludo Classic, Line Trap, Sky Dash: Platform Quest and Bubble Shooter.
+
+The catalogue also contains discovery concepts marked as coming soon. A game should only be marked playable when its actual game build is present and its source/usage rights have been checked.
 
 ## Run locally
 
-Open \`index.html\` in a modern browser or serve the folder with any static web server.
+Open `index.html` in a modern browser, or serve the repository root with any static web server. Standalone games can also be opened directly from their `games/<game-id>/index.html` paths.
 
 ## Deploy
 
-The project is static and can be deployed to GitHub Pages or Cloudflare Pages. For Cloudflare Pages, use the repository root as the output directory; no build command is required.
+Cloudflare Pages settings: repository root as the output directory, no build command. The site is static; no backend or database is required. Favorites, theme and recent history use browser localStorage and do not sync between devices.
 
-## Important before public launch
+## Release checklist
 
-- Verify game source, ownership, licenses and commercial distribution permissions individually.
-- Replace placeholder game cards with genuine game builds and approved artwork.
-- Connect the contact form to a form provider if submissions are needed.
-- Review legal pages for the actual hosting, analytics, advertising and jurisdictions.
-- Add privacy/consent handling before enabling analytics or advertising.
-- Test mobile touch controls, keyboard controls, fullscreen and performance on real devices.
-
-No backend or database is required for the current static features. Favorites, theme and recent history are stored locally in the visitor's browser and do not sync between devices.
+- Verify source ownership, license and commercial distribution rights for each imported game.
+- Test keyboard, mouse, touch, restart, fullscreen and responsive layouts on real devices.
+- Check every internal link and catalogue entry after deployment.
+- Review privacy/legal copy for the actual hosting, analytics, advertising and jurisdictions.
+- Connect a form service only if contact or game submissions need to be delivered online.
